@@ -12,7 +12,33 @@ const gpa = util.gpa;
 const data = @embedFile("../data/day02.txt");
 
 pub fn main() !void {
-    
+    var x: i64 = 0;
+    var y: i64 = 0;
+
+    var lines = std.mem.split(data, "\n");
+    while (lines.next()) |line| {
+        var op = line[0];
+
+        var i: u64 = 1;
+        while (line[i] != ' ') : (i += 1) {}
+        var value = line[i + 1] - 48;
+        std.log.info("OP: {c} Data: {}", .{ op, value });
+
+        switch (op) {
+            'f' => {
+                x += value;
+            },
+            'd' => {
+                y += value;
+            },
+            'u' => {
+                y -= value;
+            },
+            else => {},
+        }
+    }
+
+    std.log.info("X: {} Y: {} T: {}", .{ x, y, x * y });
 }
 
 // Useful stdlib functions
