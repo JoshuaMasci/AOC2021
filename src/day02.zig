@@ -14,6 +14,7 @@ const data = @embedFile("../data/day02.txt");
 pub fn main() !void {
     var x: i64 = 0;
     var y: i64 = 0;
+    var aim: i64 = 0;
 
     var lines = std.mem.split(data, "\n");
     while (lines.next()) |line| {
@@ -27,12 +28,13 @@ pub fn main() !void {
         switch (op) {
             'f' => {
                 x += value;
+                y += aim * value;
             },
             'd' => {
-                y += value;
+                aim += value;
             },
             'u' => {
-                y -= value;
+                aim -= value;
             },
             else => {},
         }
